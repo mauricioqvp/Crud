@@ -3,3 +3,6 @@ INSERT INTO tb_product (name, description, price, img_Url) VALUES ('Notebook Sam
 INSERT INTO tb_category (name) VALUES ('Informatica');
 INSERT INTO tb_category (name) VALUES ('Eletrônicos');
 INSERT INTO tb_category (name) VALUES ('Livros');
+
+INSERT INTO tb_product_category (product_id, category_id) VALUES (1,1);
+INSERT INTO tb_product_category (product_id, category_id) VALUES (1,2);
