@@ -1,14 +1,19 @@
 package com.stepinformatica.estudo.resources;
 
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.stepinformatica.estudo.dto.ProductDTO;
 import com.stepinformatica.estudo.services.ProductService;
@@ -37,5 +42,13 @@ public class ProductResource {
 		
 		Page<ProductDTO> list = service.findAllPaged(/* categoryId, name.trim(), */ pageRequest);
 		return ResponseEntity.ok().body(list);
+	}
+	
+	@PostMapping
+	public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto) {
+		dto = service.insert(dto);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(dto.getId()).toUri();
+		return ResponseEntity.created(uri).body(dto);
 	}
 }
