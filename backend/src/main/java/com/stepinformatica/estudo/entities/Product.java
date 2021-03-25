@@ -1,9 +1,11 @@
 package com.stepinformatica.estudo.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +29,12 @@ public class Product implements Serializable {
 	private String description;
 	private Double price;
 	private String imgUrl;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant createdAt;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant updatedAt;
 	
 	@ManyToMany
 	@JoinTable(name = "tb_product_category",
@@ -84,8 +94,27 @@ public class Product implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 	
+	public Instant getCreatedAt() {
+		return createdAt;
+	}
+
+	
+	public Instant getUpdatedAt() {
+		return updatedAt;
+	}
+
 	public Set<Category> getCategory() {
 		return category;
+	}
+	
+	@PrePersist
+	public void prePersist() {
+		createdAt = Instant.now();
+	}
+	
+	@PreUpdate
+	public void preUpdate() {
+		updatedAt = Instant.now();
 	}
 
 	@Override
