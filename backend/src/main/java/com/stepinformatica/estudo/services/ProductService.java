@@ -1,5 +1,7 @@
 package com.stepinformatica.estudo.services;
 
+import java.util.Optional;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,5 +71,12 @@ public class ProductService {
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found " + id);
 		}
+	}
+
+
+	public ProductDTO findById(Long id) {
+		Optional<Product> obj = repository.findById(id);
+		Product entity = obj.get();
+		return new ProductDTO(entity);
 	}
 }

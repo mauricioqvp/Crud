@@ -46,6 +46,12 @@ public class ProductResource {
 		Page<ProductDTO> list = service.findAllPaged(/* categoryId, name.trim(), */ pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<ProductDTO> findById(@PathVariable Long id){
+		ProductDTO dto = service.findById(id);
+		return ResponseEntity.ok().body(dto);
+	}
 	
 	@PostMapping
 	public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto) {
