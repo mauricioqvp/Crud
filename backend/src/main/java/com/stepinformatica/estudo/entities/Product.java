@@ -46,7 +46,6 @@ public class Product implements Serializable {
 	}
 
 	public Product(Long id, String name, String description, Double price, String imgUrl) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -98,15 +97,10 @@ public class Product implements Serializable {
 		return createdAt;
 	}
 
-	
 	public Instant getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public Set<Category> getCategory() {
-		return category;
-	}
-	
 	@PrePersist
 	public void prePersist() {
 		createdAt = Instant.now();
@@ -117,6 +111,10 @@ public class Product implements Serializable {
 		updatedAt = Instant.now();
 	}
 
+	public Set<Category> getCategory() {
+		return category;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

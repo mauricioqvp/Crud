@@ -12,25 +12,26 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_category")
-public class Category implements Serializable {
+@Table(name = "tb_role")
+public class Role implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String authority;
 	
-	@ManyToMany(mappedBy = "category")
-	private Set<Product> products = new HashSet<>();
+	@ManyToMany(mappedBy = "roles")
+	private Set<User> users = new HashSet<>();
 	
-	public Category() {
+	public Role() {
+		super();
 	}
 
-	public Category(Long id, String name) {
+	public Role(Long id, String authority) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.authority = authority;
 	}
 
 	public Long getId() {
@@ -41,18 +42,14 @@ public class Category implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getAuthority() {
+		return authority;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 
-	public Set<Product> getProducts() {
-		return products;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,7 +66,7 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Role other = (Role) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
