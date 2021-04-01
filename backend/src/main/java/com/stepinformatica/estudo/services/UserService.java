@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.stepinformatica.estudo.dto.UserDTO;
 import com.stepinformatica.estudo.dto.UserInsertDTO;
+import com.stepinformatica.estudo.dto.UserUpdateDTO;
 import com.stepinformatica.estudo.entities.User;
 import com.stepinformatica.estudo.repositories.UserRepository;
 import com.stepinformatica.estudo.services.exceptions.DatabaseException;
@@ -51,7 +52,7 @@ public class UserService {
 	}
 
 	@Transactional
-	public UserDTO upDate(Long id, UserDTO dto) {
+	public UserDTO upDate(Long id, UserUpdateDTO dto) {
 		try {
 			User entity = userRepository.getOne(id);
 			CopyDtoToEntity(dto, entity);
