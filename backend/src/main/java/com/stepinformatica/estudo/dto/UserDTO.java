@@ -11,22 +11,19 @@ import com.stepinformatica.estudo.entities.User;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
-	
-	/*
-	 * @Size(min =5, max = 60, message = "deve ter entre 5 e 60 caracteres")
-	 * 
-	 * @NotBlank(message = "Não pode ficar vazio")
-	 */
+
+	@Size(min = 5, max = 60, message = "deve ter entre 5 e 60 caracteres")
+	@NotBlank(message = "Não pode ficar vazio")
 	private String firstName;
-	
+
 	@NotEmpty()
 	private String lastName;
-	
-	//@Email(message = "Digite um email válido")
+
+	@Email(message = "Digite um email válido")
 	private String email;
-	
+
 	public UserDTO() {
 	}
 
@@ -36,7 +33,7 @@ public class UserDTO implements Serializable {
 		this.lastName = lastName;
 		this.email = email;
 	}
-	
+
 	public UserDTO(User entity) {
 		id = entity.getId();
 		firstName = entity.getFirstName();
