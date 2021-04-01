@@ -2,14 +2,29 @@ package com.stepinformatica.estudo.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 import com.stepinformatica.estudo.entities.User;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	/*
+	 * @Size(min =5, max = 60, message = "deve ter entre 5 e 60 caracteres")
+	 * 
+	 * @NotBlank(message = "Não pode ficar vazio")
+	 */
 	private String firstName;
+	
+	@NotEmpty()
 	private String lastName;
+	
+	//@Email(message = "Digite um email válido")
 	private String email;
 	
 	public UserDTO() {

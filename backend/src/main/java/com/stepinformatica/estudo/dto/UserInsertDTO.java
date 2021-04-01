@@ -21,4 +21,13 @@ public class UserInsertDTO extends UserDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "UserInsertDTO [password=" + password + ", getId()=" + getId() + ", getFirstName()=" + getFirstName()
+				+ ", getLastName()=" + getLastName() + ", getEmail()=" + getEmail() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+	
+	
 }

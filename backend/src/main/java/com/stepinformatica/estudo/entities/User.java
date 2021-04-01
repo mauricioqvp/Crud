@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,8 @@ public class User implements Serializable {
 	private Long id;
 	private String firstName;
 	private String lastName;
+	
+	@Column(unique = true)
 	private String email;
 	private String password;
 
@@ -113,4 +116,12 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", roles=" + roles + "]";
+	}
+	
+	
 }
