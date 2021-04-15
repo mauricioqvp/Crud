@@ -23,6 +23,7 @@ import com.stepinformatica.estudo.dto.UserDTO;
 import com.stepinformatica.estudo.dto.UserInsertDTO;
 import com.stepinformatica.estudo.dto.UserUpdateDTO;
 import com.stepinformatica.estudo.entities.User;
+import com.stepinformatica.estudo.repositories.RoleRepository;
 import com.stepinformatica.estudo.repositories.UserRepository;
 import com.stepinformatica.estudo.services.exceptions.DatabaseException;
 import com.stepinformatica.estudo.services.exceptions.ResourceNotFoundException;
@@ -37,6 +38,9 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 
 	@Transactional
 	public UserDTO insert(UserInsertDTO dto) {
